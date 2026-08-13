@@ -23,6 +23,22 @@ python -m http.server 8000
 
 Then open <http://localhost:8000>.
 
+## Publish with Vercel
+
+Either option works — pick one:
+
+**A · Root Directory = `Explorer-Manager (root)`** (nothing to configure)
+The `vercel.json` in the repository root sets `"outputDirectory": "site"`, so Vercel
+serves this folder automatically. Framework Preset: **Other**, no build command.
+
+**B · Root Directory = `site`**
+In the import dialog, open *Root Directory* → **Edit**, select the `site` folder and
+confirm. Vercel then serves the folder directly as a static site.
+
+In both cases `index.html` is the entry point — there is no build step.
+Deployments track the `main` branch, so the `site/` folder has to be merged into
+`main` for a deployment to show anything.
+
 ## Publish with GitHub Pages
 
 1. Repository → **Settings** → **Pages**
