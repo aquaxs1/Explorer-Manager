@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 116" role="img" aria-label="Explorer Manager logo">
+  <defs>
+    <linearGradient id="emFolderBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0A92A"/>
+      <stop offset="100%" stop-color="#E59616"/>
+    </linearGradient>
+    <linearGradient id="emFolderFront" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#F8D45C"/>
+      <stop offset="55%" stop-color="#F5C63F"/>
+      <stop offset="100%" stop-color="#EDB520"/>
+    </linearGradient>
+    <linearGradient id="emBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4FA8F5"/>
+      <stop offset="100%" stop-color="#1F63CE"/>
+    </linearGradient>
+    <linearGradient id="emLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2E7BE0"/>
+      <stop offset="100%" stop-color="#5FB0F7"/>
+    </linearGradient>
+    <clipPath id="emClip">
+      <path d="M4 40 q0-11 11-11 h98 q11 0 11 11 v52 q0 12-12 12 H16 q-12 0-12-12 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- back sheet with tab -->
+  <path fill="url(#emFolderBack)"
+        d="M9 20 q0-10 10-10 h33 q4 0 6.8 2.9 L70 24 h39 q10 0 10 10 v22 H9 Z"/>
+
+  <!-- front folder face -->
+  <path fill="url(#emFolderFront)"
+        d="M4 40 q0-11 11-11 h98 q11 0 11 11 v52 q0 12-12 12 H16 q-12 0-12-12 Z"/>
+
+  <!-- blue folder + document, clipped by the folder face -->
+  <g clip-path="url(#emClip)">
+    <rect x="26" y="55" width="76" height="56" rx="10" fill="url(#emBlue)"/>
+    <rect x="41" y="68" width="46" height="43" rx="6" fill="#FFFFFF"/>
+    <g fill="url(#emLine)">
+      <rect x="48" y="78" width="32" height="5.4" rx="2.7"/>
+      <rect x="48" y="88" width="26" height="5.4" rx="2.7"/>
+      <rect x="48" y="98" width="18" height="5.4" rx="2.7"/>
+    </g>
+  </g>
+</svg>
