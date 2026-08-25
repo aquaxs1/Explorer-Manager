@@ -19,9 +19,9 @@ try:
     from watcher import start_watcher
     from help_texts import HELP_TEXTS
 except ImportError:
-    HELP_TEXTS = {"en": "Help files missing.", "de": "Hilfedateien fehlen."}
+    HELP_TEXTS = {"en": "Help file missing."}
 
-# --- 100% SICHERER SPEICHERORT (AppData) ---
+# --- Settings live in AppData, which is always writable ---
 appdata_dir = Path(os.getenv('APPDATA')) / "ExplorerManager"
 appdata_dir.mkdir(parents=True, exist_ok=True)
 SETTINGS_FILE = appdata_dir / "settings.json"

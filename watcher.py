@@ -1,6 +1,6 @@
 """
-watcher.py – Hintergrundprozess der Dateien überwacht und sortiert.
-Benötigt: pip install watchdog
+watcher.py - background process that watches folders and sorts new files.
+Requires: pip install watchdog
 """
 
 import time
@@ -12,21 +12,21 @@ from watchdog.events import FileSystemEventHandler
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [Wächter] %(message)s",
+    format="%(asctime)s [Watcher] %(message)s",
     datefmt="%H:%M:%S"
 )
 
 
 def matches_rule(filepath: Path, rule: dict) -> bool:
-    """Prüft ob eine Datei zu einer Regel passt."""
+    """Return True if the file matches the rule."""
     filename_filter = rule.get("filename", "").strip().lower()
     filetype_filter = rule.get("filetype", "not defined").strip().lower()
 
-    # Dateiname prüfen (leer = alle)
+    # Filename filter (empty matches everything)
     if filename_filter and filename_filter not in filepath.name.lower():
         return False
 
-    # Dateiendung prüfen
+    # File extension filter
     if filetype_filter != "not defined":
         if filepath.suffix.lower() != filetype_filter:
             return False
@@ -35,12 +35,12 @@ def matches_rule(filepath: Path, rule: dict) -> bool:
 
 
 def sort_file(filepath: Path, rules: list):
-    """Versucht eine Datei anhand der Regeln zu sortieren."""
-    # Kurz warten damit die Datei vollständig geschrieben ist
+    """Move a file to the destination of the first rule it matches."""
+    # Wait briefly so the file is written completely before it is moved
     time.sleep(0.5)
 
     if not filepath.exists():
-        return  # Datei wurde schon verschoben
+        return  # already moved by something else
 
     for rule in rules:
         dest_str = rule.get("destination", "").strip()
@@ -49,13 +49,13 @@ def sort_file(filepath: Path, rules: list):
 
         dest = Path(dest_str)
         if not dest.exists():
-            logging.warning(f"Zielordner existiert nicht: {dest}")
+            logging.warning(f"Destination folder does not exist: {dest}")
             continue
 
         if matches_rule(filepath, rule):
             target = dest / filepath.name
 
-            # Namenskonflikt vermeiden
+            # Avoid overwriting an existing file
             counter = 1
             while target.exists():
                 target = dest / f"{filepath.stem}_{counter}{filepath.suffix}"
@@ -63,10 +63,10 @@ def sort_file(filepath: Path, rules: list):
 
             try:
                 shutil.move(str(filepath), str(target))
-                logging.info(f"Verschoben: {filepath.name} → {dest}")
+                logging.info(f"Moved: {filepath.name} -> {dest}")
             except Exception as e:
-                logging.error(f"Fehler beim Verschieben: {e}")
-            return  # Erste passende Regel gewinnt
+                logging.error(f"Could not move the file: {e}")
+            return  # first matching rule wins
 
 
 class SorterHandler(FileSystemEventHandler):
@@ -78,30 +78,30 @@ class SorterHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         filepath = Path(event.src_path)
-        logging.info(f"Neue Datei erkannt: {filepath.name}")
+        logging.info(f"New file detected: {filepath.name}")
         sort_file(filepath, self.rules)
 
     def on_moved(self, event):
-        """Auch beim Einfügen per Drag & Drop / Umbenennen reagieren."""
+        """Also react to drag & drop and renames, not just new files."""
         if event.is_directory:
             return
         filepath = Path(event.dest_path)
-        logging.info(f"Datei bewegt: {filepath.name}")
+        logging.info(f"File moved in: {filepath.name}")
         sort_file(filepath, self.rules)
 
 
 def start_watcher(watch_folder: str, rules: list, stop_event):
-    """Startet den Ordner-Wächter. Läuft bis stop_event gesetzt wird."""
+    """Start watching a folder. Runs until stop_event is set."""
     folder = Path(watch_folder)
     if not folder.exists():
-        logging.error(f"Überwachter Ordner existiert nicht: {folder}")
+        logging.error(f"Watched folder does not exist: {folder}")
         return
 
     handler = SorterHandler(rules)
     observer = Observer()
     observer.schedule(handler, str(folder), recursive=False)
     observer.start()
-    logging.info(f"Wächter gestartet für: {folder}")
+    logging.info(f"Watching: {folder}")
 
     try:
         while not stop_event.is_set():
@@ -109,9 +109,9 @@ def start_watcher(watch_folder: str, rules: list, stop_event):
     finally:
         observer.stop()
         observer.join()
-        logging.info("Wächter gestoppt.")
+        logging.info("Watcher stopped.")
 
 
 def stop_watcher(stop_event):
-    """Stoppt den laufenden Wächter."""
+    """Stop the running watcher."""
     stop_event.set()
