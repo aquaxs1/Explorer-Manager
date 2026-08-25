@@ -44,7 +44,9 @@ def sort_file(filepath: Path, rules: list):
 
     for rule in rules:
         dest_str = rule.get("destination", "").strip()
-        if not dest_str or dest_str.startswith("—"):
+        # Skip rules whose destination is still the "-- select destination --"
+        # placeholder: they were never finished and must not claim any file.
+        if not dest_str or dest_str.startswith(("-", "—")):
             continue
 
         dest = Path(dest_str)

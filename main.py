@@ -26,6 +26,21 @@ appdata_dir = Path(os.getenv('APPDATA')) / "ExplorerManager"
 appdata_dir.mkdir(parents=True, exist_ok=True)
 SETTINGS_FILE = appdata_dir / "settings.json"
 
+
+def resource_path(*parts):
+    """Locate a bundled file, both in the source tree and inside the .exe."""
+    base = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return base.joinpath(*parts)
+
+
+ICON_FILE = resource_path("assets", "icon.ico")   # title bar / taskbar on Windows
+ICON_PNG = resource_path("assets", "icon.png")    # fallback for iconphoto()
+LOGO_FILE = resource_path("assets", "logo.png")   # the mark shown in the header
+
+# Shown in a rule until a destination folder has been picked. A rule still
+# carrying it is unfinished: it is never saved and never handed to a watcher.
+DEST_PLACEHOLDER = "-- select destination --"
+
 FILE_TYPES = [
     "not defined",
     ".exe", ".jar", ".pdf", ".txt", ".zip", ".rar", ".7z",
@@ -46,17 +61,56 @@ LANGUAGES = {
     "Japanese": "ja",
 }
 
+def has_destination(rule):
+    """True if the rule points at a real folder instead of the placeholder."""
+    dest = str(rule.get("destination", "")).strip()
+    return bool(dest) and dest != DEST_PLACEHOLDER and not dest.startswith(("-", "\u2014"))
+
+def clean_rules(rules):
+    """Keep only usable rules, so no half-finished filter is stored or applied.
+
+    A rule without a destination cannot move anything - it only produces
+    warnings in the log and clutters the list on the next start.
+    """
+    cleaned = []
+    for rule in rules if isinstance(rules, list) else []:
+        if not isinstance(rule, dict) or not has_destination(rule):
+            continue
+        cleaned.append({
+            "filename": str(rule.get("filename", "")).strip(),
+            "filetype": str(rule.get("filetype", "not defined")).strip() or "not defined",
+            "destination": str(rule.get("destination", "")).strip(),
+        })
+    return cleaned
+
+def clean_folders(folders):
+    """Unique, non-empty folder paths, in the order they were added."""
+    cleaned = []
+    for folder in folders if isinstance(folders, list) else []:
+        if not isinstance(folder, str):
+            continue
+        folder = folder.strip()
+        if folder and folder not in cleaned:
+            cleaned.append(folder)
+    return cleaned
+
 def load_settings():
+    """Read the settings file. A fresh install always starts completely empty."""
     if SETTINGS_FILE.exists():
         try:
             with open(SETTINGS_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except json.JSONDecodeError:
+                data = json.load(f)
+            if isinstance(data, dict):
+                return {
+                    "rules": clean_rules(data.get("rules", [])),
+                    "watch_folders": clean_folders(data.get("watch_folders", [])),
+                }
+        except (json.JSONDecodeError, OSError):
             pass
     return {"rules": [], "watch_folders": []}
 
 def save_settings(rules, watch_folders):
-    data = {"rules": rules, "watch_folders": watch_folders}
+    data = {"rules": clean_rules(rules), "watch_folders": clean_folders(watch_folders)}
     with open(SETTINGS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
@@ -120,7 +174,7 @@ class RuleRow(ctk.CTkFrame):
         dest_frame = ctk.CTkFrame(input_grid, fg_color="transparent")
         dest_frame.grid(row=2, column=1, sticky="ew", padx=(10, 0), pady=2)
         
-        self.dest_var = tk.StringVar(value="-- select destination --")
+        self.dest_var = tk.StringVar(value=DEST_PLACEHOLDER)
         ctk.CTkEntry(dest_frame, textvariable=self.dest_var, state="readonly", height=28).pack(side="left", fill="x", expand=True, padx=(0, 5))
         ctk.CTkButton(dest_frame, text="...", width=30, height=28, fg_color="#7f8c8d", command=self._browse).pack(side="right")
 
@@ -136,7 +190,7 @@ class RuleRow(ctk.CTkFrame):
     def set_data(self, data):
         self.filename_var.set(data.get("filename", ""))
         self.filetype_var.set(data.get("filetype", "not defined"))
-        self.dest_var.set(data.get("destination", "-- select destination --"))
+        self.dest_var.set(data.get("destination", DEST_PLACEHOLDER))
 
 class FileSorterApp(ctk.CTk):
     def __init__(self):
@@ -150,8 +204,43 @@ class FileSorterApp(ctk.CTk):
         self.rule_rows = []
         self._watcher_stops = []
         
+        self._apply_window_icon()
         self._build_ui()
         self._load()
+
+    def _apply_window_icon(self):
+        """Put the Explorer Manager logo in the title bar and the taskbar."""
+        if ICON_FILE.exists():
+            try:
+                self.iconbitmap(str(ICON_FILE))
+                # CustomTkinter redraws the title bar shortly after start-up,
+                # which drops the icon again - so set it a second time.
+                self.after(250, self._reapply_window_icon)
+                return
+            except tk.TclError:
+                pass
+        if ICON_PNG.exists():
+            try:
+                self._icon_image = tk.PhotoImage(file=str(ICON_PNG))
+                self.iconphoto(True, self._icon_image)
+            except tk.TclError:
+                pass
+
+    def _reapply_window_icon(self):
+        try:
+            self.iconbitmap(str(ICON_FILE))
+        except tk.TclError:
+            pass
+
+    def _load_logo(self, size=(38, 34)):
+        """The website mark as a CTkImage, or None if it cannot be loaded."""
+        if not LOGO_FILE.exists():
+            return None
+        try:
+            from PIL import Image
+            return ctk.CTkImage(Image.open(LOGO_FILE), size=size)
+        except Exception:
+            return None
 
     def _build_ui(self):
         ctk.set_appearance_mode("light")
@@ -159,7 +248,10 @@ class FileSorterApp(ctk.CTk):
         # Header
         header = ctk.CTkFrame(self, fg_color="#2980b9", height=70, corner_radius=0)
         header.pack(fill="x")
-        ctk.CTkLabel(header, text="EXPLORER MANAGER", text_color="white", font=("Segoe UI", 22, "bold")).pack(side="left", padx=25)
+        logo = self._load_logo()
+        if logo:
+            ctk.CTkLabel(header, image=logo, text="").pack(side="left", padx=(22, 12))
+        ctk.CTkLabel(header, text="EXPLORER MANAGER", text_color="white", font=("Segoe UI", 22, "bold")).pack(side="left", padx=(0 if logo else 25, 25))
         
         # Watch Folders
         wf_box = ctk.CTkFrame(self, fg_color="white", corner_radius=10, border_width=1, border_color="#dcdde1")
@@ -176,7 +268,10 @@ class FileSorterApp(ctk.CTk):
         # Rules Scroll Area
         rules_container = ctk.CTkFrame(self, fg_color="transparent")
         rules_container.pack(fill="both", expand=True, padx=20)
-        ctk.CTkLabel(rules_container, text="Automation Rules", font=("Segoe UI", 14, "bold"), anchor="w").pack(fill="x", pady=(0, 5))
+        rules_header = ctk.CTkFrame(rules_container, fg_color="transparent")
+        rules_header.pack(fill="x", pady=(0, 5))
+        ctk.CTkLabel(rules_header, text="Automation Rules", font=("Segoe UI", 14, "bold"), anchor="w").pack(side="left")
+        ctk.CTkButton(rules_header, text="Clear all", width=80, height=24, fg_color="transparent", text_color="#eb4d4b", hover_color="#e8eaf0", border_width=1, border_color="#eb4d4b", command=self._clear_rules).pack(side="right")
         
         self.rules_scroll = ctk.CTkScrollableFrame(rules_container, fg_color="#ffffff", border_width=1, border_color="#dcdde1", corner_radius=10)
         self.rules_scroll.pack(fill="both", expand=True)
@@ -214,6 +309,17 @@ class FileSorterApp(ctk.CTk):
         self.rule_rows.remove(row)
         for i, r in enumerate(self.rule_rows, 1): r.label.configure(text=f"RULE {i}")
 
+    def _clear_rules(self):
+        """Throw away every rule - the way back to a clean, empty setup."""
+        if not self.rule_rows:
+            return
+        if not messagebox.askyesno("Clear all rules", f"Delete all {len(self.rule_rows)} rules? This cannot be undone."):
+            return
+        for row in self.rule_rows: row.destroy()
+        self.rule_rows.clear()
+        save_settings([], self.watch_folders)
+        self._restart_watchers()
+
     def _update_wf_ui(self):
         for w in self.watch_list_frame.winfo_children(): w.destroy()
         for f in self.watch_folders:
@@ -230,9 +336,15 @@ class FileSorterApp(ctk.CTk):
 
     def _save(self):
         rules = [r.get_data() for r in self.rule_rows]
-        save_settings(rules, self.watch_folders)
+        usable = clean_rules(rules)
+        save_settings(usable, self.watch_folders)
         self._restart_watchers()
-        messagebox.showinfo("Success", "Settings saved and Watchers restarted!")
+        message = "Settings saved and Watchers restarted!"
+        unfinished = len(rules) - len(usable)
+        if unfinished:
+            message += (f"\n\n{unfinished} rule(s) without a destination folder were "
+                        "skipped. Pick a destination for them or remove them.")
+        messagebox.showinfo("Success", message)
 
     def _load(self):
         data = load_settings()
@@ -245,7 +357,7 @@ class FileSorterApp(ctk.CTk):
     def _restart_watchers(self):
         for s in self._watcher_stops: s.set()
         self._watcher_stops.clear()
-        rules = [r.get_data() for r in self.rule_rows]
+        rules = clean_rules([r.get_data() for r in self.rule_rows])
         for folder in self.active_folders:
             if Path(folder).exists():
                 stop_event = threading.Event()

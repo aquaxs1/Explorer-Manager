@@ -55,16 +55,21 @@ things go in the first place.
 
 ## Install
 
-### Ready-to-run executable
+### Download the .exe (recommended)
 
-No Python required. Open PowerShell, paste, press Enter — the app downloads
-to your desktop and starts right away:
+**[Download ExplorerManager-v1.1.exe](https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe)**
+— one file, no installer, no Python. Save it anywhere and double-click it.
+Windows may show a SmartScreen notice for a new publisher: choose
+**More info → Run anyway**. All releases are on the
+[release page](https://github.com/aquaxs1/Explorer-Manager/releases/latest).
+
+### Download it with PowerShell
+
+Fetches the same .exe to your desktop and starts it right away:
 
 ```powershell
 irm https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe -OutFile "$env:USERPROFILE\Desktop\ExplorerManager.exe"; & "$env:USERPROFILE\Desktop\ExplorerManager.exe"
 ```
-
-Or [download it from the release page](https://github.com/aquaxs1/Explorer-Manager/releases/latest).
 
 ### From source
 
@@ -73,9 +78,21 @@ Needs Python 3.10+ and git on your PATH:
 ```bash
 git clone https://github.com/aquaxs1/Explorer-Manager.git
 cd Explorer-Manager
-pip install watchdog customtkinter
+pip install watchdog customtkinter pillow
 python main.py
 ```
+
+### Build the .exe yourself
+
+```powershell
+pip install pyinstaller watchdog customtkinter pillow
+pyinstaller --noconfirm --onefile --windowed --name ExplorerManager `
+            --icon assets\icon.ico --add-data "assets;assets" main.py
+```
+
+`--icon` gives the executable the Explorer Manager logo, `--add-data` ships the
+same logo for the window, the taskbar and the app header. The build lands in
+`dist\ExplorerManager.exe`.
 
 ---
 
@@ -104,9 +121,13 @@ The status line shows `● System Ready` until a folder is active, then
 | `main.py` | The CustomTkinter GUI, autostart registration, settings I/O |
 | `watcher.py` | The watchdog observer — matching and moving happens here |
 | `help_texts.py` | The in-app user manual |
+| `assets/` | Window icon and header logo, generated from `site/assets/mark.svg` by `tools/make_icons.py` |
 
 Settings live in `%APPDATA%\ExplorerManager\settings.json` as plain JSON.
-Safe to back up, and safe to edit by hand while the program is closed.
+Safe to back up, and safe to edit by hand while the program is closed. A fresh
+install starts with no rules at all; a rule without a destination folder is
+never saved and never applied, and `Clear all` next to *Automation Rules*
+removes every rule at once.
 
 ---
 

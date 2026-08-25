@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/logo.svg">
 <link rel="stylesheet" href="assets/styles.css">
 <meta property="og:title" content="Explorer Manager — Files that sort themselves">
-<meta property="og:description" content="Real-time folder automation for Windows. One command to install.">
+<meta property="og:description" content="Real-time folder automation for Windows. Download the .exe, double-click, done.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
 <meta property="og:url" content="https://explorer-manager.vercel.app/">
@@ -48,17 +48,18 @@
           after you close the window.
         </p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#install">
+          <a class="btn btn--primary" href="https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
             Download for Windows
           </a>
           <a class="btn btn--ghost" href="#how">See how it works</a>
         </div>
-        <p class="hero-note">Free · No account · ~13 MB standalone .exe</p>
+        <p class="hero-note">Free · No account · one 13 MB .exe, no installer · <a href="#install">other ways to install</a></p>
       </div>
 
       <div class="mock" aria-hidden="true">
         <div class="mock__bar">
+          <img src="assets/mark.svg" alt="" width="24" height="22">
           <strong>EXPLORER MANAGER</strong>
           <div class="mock__dots"><i></i><i></i><i></i></div>
         </div>
@@ -91,45 +92,62 @@
   <!-- ============ INSTALL ============ -->
   <section class="section section--soft" id="install">
     <div class="wrap center">
-      <h2 class="reveal">Install with one command</h2>
+      <h2 class="reveal">Download and run</h2>
       <p class="lead reveal" style="margin-top:12px;margin-bottom:26px">
-        Open PowerShell, paste, press Enter. The app downloads to your desktop and starts right away.
+        One file, no installer, no Python. Save the .exe wherever you like, double-click it,
+        and start building rules.
       </p>
 
-      <div class="tabs reveal" role="tablist" aria-label="Install method">
-        <button class="tab" id="tab-exe" role="tab" aria-selected="true" aria-controls="panel-exe" type="button">Ready-to-run .exe</button>
-        <button class="tab" id="tab-src" role="tab" aria-selected="false" aria-controls="panel-src" type="button">From source</button>
+      <div class="dl reveal">
+        <img class="dl__mark" src="assets/mark.svg" alt="" width="64" height="58">
+        <div class="dl__meta">
+          <strong>ExplorerManager-v1.1.exe</strong>
+          <span>Windows 10 / 11 · 13 MB · free for personal use</span>
+        </div>
+        <a class="btn btn--primary btn--lg" href="https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          Download .exe
+        </a>
       </div>
+      <p class="install-hint reveal">
+        Windows may show a SmartScreen notice for a new publisher — choose <b>More info</b> →
+        <b>Run anyway</b>. You can also
+        <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">browse every release</a>.
+      </p>
 
-      <div class="panel reveal" id="panel-exe" role="tabpanel" aria-labelledby="tab-exe">
-        <div class="term">
-          <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
-          <div class="term__body">
+      <details class="adv reveal">
+        <summary>Rather use the command line?</summary>
+
+        <div class="adv__item">
+          <h3>Download it with PowerShell</h3>
+          <p>Fetches the same .exe to your desktop and starts it right away.</p>
+          <div class="term">
+            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
+            <div class="term__body">
 <pre><code><span class="prompt">PS&gt; </span><span class="fn">irm</span> https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe -OutFile <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.exe"</span>; <span class="fn">&amp;</span> <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.exe"</span></code></pre>
-            <button class="copy" type="button" data-copy>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-              <span>Copy</span>
-            </button>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
           </div>
         </div>
-        <p class="install-hint">
-          No Python required. Prefer clicking? <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download from the release page</a>.
-        </p>
-      </div>
 
-      <div class="panel reveal" id="panel-src" role="tabpanel" aria-labelledby="tab-src" hidden>
-        <div class="term">
-          <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
-          <div class="term__body">
-<pre><code><span class="prompt">PS&gt; </span><span class="fn">git clone</span> https://github.com/aquaxs1/Explorer-Manager.git; cd Explorer-Manager; <span class="fn">pip install</span> watchdog customtkinter; <span class="fn">python</span> main.py</code></pre>
-            <button class="copy" type="button" data-copy>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-              <span>Copy</span>
-            </button>
+        <div class="adv__item">
+          <h3>Run from source</h3>
+          <p>Needs <code>Python 3.10+</code> and <code>git</code> on your PATH.</p>
+          <div class="term">
+            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
+            <div class="term__body">
+<pre><code><span class="prompt">PS&gt; </span><span class="fn">git clone</span> https://github.com/aquaxs1/Explorer-Manager.git; cd Explorer-Manager; <span class="fn">pip install</span> watchdog customtkinter pillow; <span class="fn">python</span> main.py</code></pre>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
           </div>
         </div>
-        <p class="install-hint">Needs <code>Python 3.10+</code> and <code>git</code> on your PATH.</p>
-      </div>
+      </details>
     </div>
   </section>
 
