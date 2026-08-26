@@ -4,14 +4,14 @@ Static landing page for Explorer Manager. No build step, no dependencies — pla
 
 ```
 site/
-├── index.html        # landing page (install command, features, how it works)
+├── index.html        # landing page (download, features, how it works)
 ├── terms.html        # Terms of Use
 ├── rights.html       # Rights & License
 └── assets/
     ├── mark.svg      # logo icon (also used as favicon)
     ├── logo.svg      # logo icon + wordmark
     ├── styles.css    # all styling
-    └── main.js       # copy button, install tabs, scroll reveal
+    └── main.js       # copy buttons, scroll reveal
 ```
 
 ## Preview locally
@@ -49,11 +49,21 @@ The page goes live at `https://aquaxs1.github.io/Explorer-Manager/` a minute lat
 
 ## Updating the download link
 
-The install command and the download buttons point at the release asset:
+The hero button, the download card, the PowerShell one-liner and the bottom
+call-to-action all point at one release asset:
 
 ```
-https://github.com/aquaxs1/Explorer-Manager/releases/download/manager/ExplorerManager-v1.1.exe
+https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe
 ```
 
-When you publish a new release, update that URL (and the version labels) in
-`index.html` — it appears in the install command and in the bottom call-to-action.
+That file is built by [`.github/workflows/release.yml`](../.github/workflows/release.yml):
+bump `version.py`, push a matching tag (`git tag v1.3 && git push origin v1.3`)
+and the workflow builds `ExplorerManager-v1.3.exe` and attaches it to the
+release. Then update the site:
+
+1. the four `releases/download/...` links in `index.html`
+2. the version labels — the hero badge, the file name on the download card,
+   the button in the bottom call-to-action and the footer line
+3. the version badge in the repository `README.md`
+
+A quick search for `v1.2` in `site/index.html` finds every one of them.

@@ -1,0 +1,5 @@
+-r requirements.txt
+
+pytest>=7.4          # tests/
+pyinstaller>=6.0     # building ExplorerManager.exe
+cairosvg>=2.7        # tools/make_icons.py (only needed to regenerate the icons)

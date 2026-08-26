@@ -1,0 +1,5 @@
+# Runtime dependencies for Explorer Manager
+watchdog>=3.0        # folder watching
+customtkinter>=5.2   # the GUI
+pillow>=9.1          # the logo in the header and on the tray icon
+pystray>=0.19        # keeps the app alive next to the clock after you close it

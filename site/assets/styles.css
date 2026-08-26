@@ -142,6 +142,7 @@ p { margin: 0; }
   box-shadow: var(--shadow-m); overflow: hidden;
 }
 .mock__bar { background: linear-gradient(180deg, #2E8BCF, #2472B4); padding: 13px 18px; display: flex; align-items: center; gap: 10px; }
+.mock__bar img { width: 24px; height: auto; display: block; }
 .mock__bar strong { color: #fff; font-size: .82rem; letter-spacing: .09em; font-weight: 800; }
 .mock__dots { margin-left: auto; display: flex; gap: 6px; }
 .mock__dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .45); }
@@ -152,16 +153,20 @@ p { margin: 0; }
   background: #fff; border: 1px solid #E6E9F0; border-radius: var(--radius-s);
   padding: 10px 12px; font-size: .84rem; color: #333A4D;
 }
-.mock__row .check { width: 15px; height: 15px; border-radius: 4px; background: var(--blue-500); flex: none; position: relative; }
-.mock__row .check::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(42deg); }
+.mock .check { width: 15px; height: 15px; border-radius: 4px; background: var(--blue-500); flex: none; position: relative; }
+.mock .check::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(42deg); }
+.mock__row .tag { margin-left: auto; flex: none; font-size: .68rem; font-weight: 700; color: var(--blue-600); background: var(--blue-050); border-radius: 999px; padding: 3px 9px; }
 .mock__row code { font-family: var(--mono); font-size: .79rem; color: #46506B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mock__rule { background: #fff; border: 1px solid #E6E9F0; border-radius: 12px; padding: 12px 14px; display: grid; gap: 7px; }
-.mock__rule .h { font-size: .7rem; font-weight: 800; letter-spacing: .08em; color: var(--navy); }
+.mock__rule .h { display: flex; align-items: center; gap: 8px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; color: var(--navy); }
+.mock__rule .ord { margin-left: auto; font-weight: 700; letter-spacing: .14em; color: #A9B2C6; }
 .mock__field { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; color: var(--muted); }
 .mock__field b { color: #24304F; font-weight: 600; font-family: var(--mono); font-size: .78rem; }
-.mock__foot { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-top: 1px solid #E6E9F0; background: #fff; font-size: .8rem; font-weight: 700; color: var(--green); }
+.mock__foot { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-top: 1px solid #E6E9F0; background: #fff; font-size: .8rem; font-weight: 700; color: var(--green); }
+.mock__foot .stat { white-space: nowrap; }
 .toast {
   margin-left: auto; font-weight: 600; color: var(--muted); font-family: var(--mono); font-size: .74rem;
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   animation: toastCycle 6s ease-in-out infinite;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
@@ -203,15 +208,44 @@ p { margin: 0; }
 .copy.is-done { background: rgba(22, 163, 74, .18); border-color: rgba(22, 163, 74, .5); color: #7BE0A3; }
 .copy svg { width: 14px; height: 14px; }
 
-.tabs { display: inline-flex; gap: 4px; padding: 4px; background: #EDF1F8; border-radius: 999px; margin-bottom: 18px; }
-.tab {
-  border: 0; background: transparent; cursor: pointer; font: inherit;
-  font-size: .86rem; font-weight: 700; color: var(--muted);
-  padding: 8px 18px; border-radius: 999px; transition: all .15s ease;
+/* the download card is the primary way in; the terminals sit below it */
+.dl {
+  display: flex; align-items: center; gap: 20px; text-align: left;
+  max-width: 700px; margin-inline: auto;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-l);
+  box-shadow: var(--shadow-m); padding: 22px 26px;
 }
-.tab[aria-selected="true"] { background: #fff; color: var(--navy); box-shadow: var(--shadow-s); }
-.panel[hidden] { display: none; }
-.install-hint { margin-top: 14px; font-size: .87rem; color: var(--muted); }
+.dl__mark { width: 64px; height: auto; flex: none; }
+.dl__meta { display: grid; gap: 4px; margin-right: auto; min-width: 0; }
+.dl__meta strong { font-family: var(--mono); font-size: .95rem; color: var(--navy); overflow-wrap: anywhere; }
+.dl__meta span { color: var(--muted); font-size: .86rem; }
+.btn--lg { padding: 14px 24px; font-size: 1rem; flex: none; }
+@media (max-width: 620px) {
+  .dl { flex-direction: column; text-align: center; gap: 14px; padding: 26px 20px; }
+  .dl__meta { margin-right: 0; justify-items: center; }
+  .btn--lg { width: 100%; justify-content: center; }
+}
+
+.adv { max-width: 780px; margin: 34px auto 0; }
+.adv > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 8px;
+  font-size: .9rem; font-weight: 700; color: var(--muted);
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 999px; padding: 9px 18px;
+}
+.adv > summary::-webkit-details-marker { display: none; }
+.adv > summary::before {
+  content: ""; width: 7px; height: 7px; border: solid var(--blue-500);
+  border-width: 0 2px 2px 0; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease;
+}
+.adv[open] > summary::before { transform: rotate(-135deg) translateY(-2px); }
+.adv > summary:hover { color: var(--navy); border-color: var(--blue-300); }
+.adv__item { margin-top: 26px; text-align: left; }
+.adv__item h3 { font-size: 1rem; margin-bottom: 4px; }
+.adv__item > p { color: var(--muted); font-size: .89rem; margin-bottom: 12px; }
+.adv__item > p code { font-family: var(--mono); font-size: .82rem; background: #EEF2F9; border-radius: 6px; padding: 2px 6px; color: #24304F; }
+
+.install-hint { margin-top: 16px; font-size: .87rem; color: var(--muted); }
 .install-hint code { font-family: var(--mono); font-size: .82rem; background: #EEF2F9; border-radius: 6px; padding: 2px 6px; color: #24304F; }
 
 /* ---------- feature cards ---------- */
