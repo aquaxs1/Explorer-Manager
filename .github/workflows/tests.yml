@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # settings.py and watcher.py carry the logic under test and need no GUI,
+      # so the suite runs on a plain Linux runner.
+      - name: Install test dependencies
+        run: pip install watchdog pytest
+
+      - name: Run the test suite
+        run: python -m pytest tests -q

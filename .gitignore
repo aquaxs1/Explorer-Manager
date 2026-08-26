@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+.venv/
+venv/

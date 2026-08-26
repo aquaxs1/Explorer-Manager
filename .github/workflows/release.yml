@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Work out the version and the tag
+        id: meta
+        shell: bash
+        run: |
+          version=$(python -c "import version; print(version.__version__)")
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            tag="${GITHUB_REF_NAME}"
+            if [ "$tag" != "v$version" ]; then
+              echo "::error::Tag $tag does not match version.py (v$version). Bump version.py first."
+              exit 1
+            fi
+          else
+            tag="v$version"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "asset=ExplorerManager-v$version.exe" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Build ExplorerManager.exe
+        run: >
+          pyinstaller --noconfirm --onefile --windowed
+          --name ExplorerManager
+          --icon assets\icon.ico
+          --add-data "assets;assets"
+          main.py
+
+      - name: Name the asset after the version
+        shell: bash
+        run: mv dist/ExplorerManager.exe "dist/${{ steps.meta.outputs.asset }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.asset }}
+          path: dist/${{ steps.meta.outputs.asset }}
+
+      - name: Attach it to the release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          ASSET: dist/${{ steps.meta.outputs.asset }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            gh release create "$TAG" "$ASSET" \
+              --title "Explorer Manager $TAG" --generate-notes
+          fi
