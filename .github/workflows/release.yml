@@ -34,7 +34,10 @@ jobs:
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "asset=ExplorerManager-v$version.exe" >> "$GITHUB_OUTPUT"
+          # A fixed asset name, so the website can link
+          # releases/latest/download/<name> and never go stale. The version is
+          # inside the archive and on the release page.
+          echo "asset=ExplorerManager-windows-x64.zip" >> "$GITHUB_OUTPUT"
 
       - name: Install dependencies
         run: pip install -r requirements.txt pyinstaller
@@ -47,14 +50,27 @@ jobs:
           --add-data "assets;assets"
           main.py
 
-      - name: Name the asset after the version
+      # Shipped as an archive rather than a bare .exe: browsers and antivirus
+      # engines flag a freshly downloaded, unsigned executable far more readily
+      # than the same binary inside a zip.
+      - name: Pack the executable
         shell: bash
-        run: mv dist/ExplorerManager.exe "dist/${{ steps.meta.outputs.asset }}"
+        run: |
+          cd dist
+          7z a "${{ steps.meta.outputs.asset }}" ExplorerManager.exe
+          certutil -hashfile "${{ steps.meta.outputs.asset }}" SHA256 \
+            | sed -n '2p' | tr -d '\r' \
+            | awk -v f="${{ steps.meta.outputs.asset }}" '{print $0"  "f}' \
+            > "${{ steps.meta.outputs.asset }}.sha256"
+          ls -l
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.meta.outputs.asset }}
-          path: dist/${{ steps.meta.outputs.asset }}
+          name: ExplorerManager-windows-x64
+          path: |
+            dist/${{ steps.meta.outputs.asset }}
+            dist/${{ steps.meta.outputs.asset }}.sha256
+          if-no-files-found: error
 
       - name: Attach it to the release
         shell: bash
@@ -64,8 +80,8 @@ jobs:
           ASSET: dist/${{ steps.meta.outputs.asset }}
         run: |
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$ASSET" --clobber
+            gh release upload "$TAG" "$ASSET" "$ASSET.sha256" --clobber
           else
-            gh release create "$TAG" "$ASSET" \
+            gh release create "$TAG" "$ASSET" "$ASSET.sha256" \
               --title "Explorer Manager $TAG" --generate-notes
           fi

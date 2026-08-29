@@ -4,9 +4,12 @@ Static landing page for Explorer Manager. No build step, no dependencies — pla
 
 ```
 site/
-├── index.html        # landing page (download, features, how it works)
-├── terms.html        # Terms of Use
-├── rights.html       # Rights & License
+├── index.html        # landing page (hero, features, what Windows can't do)
+├── download.html     # the download and the command-line alternatives
+├── setup.html        # set up in four steps
+├── terms.html        # Terms of Use, including Rights & License
+├── 404.html
+├── vercel.json       # used when Root Directory is set to `site`
 └── assets/
     ├── mark.svg      # logo icon (also used as favicon)
     ├── logo.svg      # logo icon + wordmark
@@ -49,21 +52,18 @@ The page goes live at `https://aquaxs1.github.io/Explorer-Manager/` a minute lat
 
 ## Updating the download link
 
-The hero button, the download card, the PowerShell one-liner and the bottom
-call-to-action all point at one release asset:
+Nothing to update. Every button points at:
 
 ```
-https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe
+https://github.com/aquaxs1/Explorer-Manager/releases/latest/download/ExplorerManager-windows-x64.zip
 ```
 
-That file is built by [`.github/workflows/release.yml`](../.github/workflows/release.yml):
-bump `version.py`, push a matching tag (`git tag v1.3 && git push origin v1.3`)
-and the workflow builds `ExplorerManager-v1.3.exe` and attaches it to the
-release. Then update the site:
+`releases/latest/download/...` is resolved by GitHub to the newest release, and
+[`.github/workflows/release.yml`](../.github/workflows/release.yml) always
+publishes the archive under that same name. Bump `version.py`, push a matching
+tag (`git tag v1.3 && git push origin v1.3`), and the site picks it up with no
+edit at all.
 
-1. the four `releases/download/...` links in `index.html`
-2. the version labels — the hero badge, the file name on the download card,
-   the button in the bottom call-to-action and the footer line
-3. the version badge in the repository `README.md`
-
-A quick search for `v1.2` in `site/index.html` finds every one of them.
+The executable ships inside a zip on purpose: browsers and antivirus engines
+flag a freshly downloaded, unsigned `.exe` far more readily than the same binary
+in an archive. The release also carries a `.sha256` for the archive.
