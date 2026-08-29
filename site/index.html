@@ -28,9 +28,9 @@
       <span>Explorer&nbsp;Manager</span>
     </a>
     <nav class="nav">
-      <a href="#install">Download</a>
+      <a href="download.html">Download</a>
       <a href="#features" class="hide-xs">Features</a>
-      <a href="#how" class="hide-sm">How it works</a>
+      <a href="setup.html" class="hide-sm">Setup</a>
       <a href="https://github.com/aquaxs1/Explorer-Manager" class="hide-sm">GitHub</a>
     </nav>
   </div>
@@ -50,13 +50,13 @@
           after you close the window.
         </p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe">
+          <a class="btn btn--primary" href="download.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
             Download for Windows
           </a>
-          <a class="btn btn--ghost" href="#how">See how it works</a>
+          <a class="btn btn--ghost" href="setup.html">See how it works</a>
         </div>
-        <p class="hero-note">Free · No account · one .exe, no installer · <a href="#install">other ways to install</a></p>
+        <p class="hero-note">Free · No account · one executable, no installer · <a href="download.html">other ways to install</a></p>
       </div>
 
       <div class="mock" aria-hidden="true">
@@ -92,66 +92,6 @@
   </section>
 
   <!-- ============ INSTALL ============ -->
-  <section class="section section--soft" id="install">
-    <div class="wrap center">
-      <h2 class="reveal">Download and run</h2>
-      <p class="lead reveal" style="margin-top:12px;margin-bottom:26px">
-        One file, no installer, no Python. Save the .exe wherever you like, double-click it,
-        and start building rules.
-      </p>
-
-      <div class="dl reveal">
-        <img class="dl__mark" src="assets/mark.svg" alt="" width="64" height="58">
-        <div class="dl__meta">
-          <strong>ExplorerManager-v1.2.exe</strong>
-          <span>Windows 10 / 11 · 64-bit · free for personal use</span>
-        </div>
-        <a class="btn btn--primary btn--lg" href="https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
-          Download .exe
-        </a>
-      </div>
-      <p class="install-hint reveal">
-        Windows may show a SmartScreen notice for a new publisher — choose <b>More info</b> →
-        <b>Run anyway</b>. You can also
-        <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">browse every release</a>.
-      </p>
-
-      <details class="adv reveal">
-        <summary>Rather use the command line?</summary>
-
-        <div class="adv__item">
-          <h3>Download it with PowerShell</h3>
-          <p>Fetches the same .exe to your desktop and starts it right away.</p>
-          <div class="term">
-            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
-            <div class="term__body">
-<pre><code><span class="prompt">PS&gt; </span><span class="fn">irm</span> https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe -OutFile <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.exe"</span>; <span class="fn">&amp;</span> <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.exe"</span></code></pre>
-              <button class="copy" type="button" data-copy>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-                <span>Copy</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="adv__item">
-          <h3>Run from source</h3>
-          <p>Needs <code>Python 3.10+</code> and <code>git</code> on your PATH.</p>
-          <div class="term">
-            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
-            <div class="term__body">
-<pre><code><span class="prompt">PS&gt; </span><span class="fn">git clone</span> https://github.com/aquaxs1/Explorer-Manager.git; cd Explorer-Manager; <span class="fn">pip install</span> -r requirements.txt; <span class="fn">python</span> main.py</code></pre>
-              <button class="copy" type="button" data-copy>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-                <span>Copy</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </details>
-    </div>
-  </section>
 
   <!-- ============ FEATURES ============ -->
   <section class="section" id="features">
@@ -252,33 +192,6 @@
   </section>
 
   <!-- ============ HOW ============ -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:40px">
-        <h2 class="reveal">Set up in four steps</h2>
-        <p class="lead reveal" style="margin-top:12px">Takes about a minute. No config files to edit.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step reveal">
-          <h3>Add a source</h3>
-          <p>Click <code>+ Add Source</code> and pick the folder to watch, e.g. your Downloads folder.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Create a rule</h3>
-          <p>Set a filename keyword, a file type, or both — then choose the destination folder.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Save &amp; restart</h3>
-          <p><code>Save &amp; Restart</code> stores your rules and starts sorting. <code>Sort existing files</code> cleans up the old pile.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Turn on autostart</h3>
-          <p>Switch <code>Autostart: OFF</code> to <code>ON</code> so it launches hidden with Windows and keeps sorting.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ CTA ============ -->
   <section class="section" style="padding-top:0">
@@ -286,9 +199,9 @@
       <div class="cta reveal">
         <h2>Stop tidying your Downloads folder</h2>
         <p>Set your rules once and let Explorer Manager handle the rest — quietly, in the background, forever.</p>
-        <a class="btn btn--amber" href="https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe">
+        <a class="btn btn--amber" href="download.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
-          Download v1.2 for Windows
+          Download for Windows
         </a>
         <p class="req">Windows 10 / 11 · free for personal use · no installer</p>
       </div>
@@ -306,15 +219,15 @@
       </a>
       <nav class="footer-links">
         <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download</a>
-        <a href="#how">How it works</a>
+        <a href="setup.html">Setup</a>
         <a href="terms.html">Terms of Use</a>
-        <a href="rights.html">Rights &amp; License</a>
+        <a href="terms.html#rights">Rights &amp; License</a>
         <a href="https://github.com/aquaxs1/Explorer-Manager">GitHub</a>
       </nav>
     </div>
     <div class="footer-bottom">
       <span>© 2026 AquAxs. All rights reserved.</span>
-      <span>Explorer Manager v1.2 · Windows 10 &amp; 11</span>
+      <span>Explorer Manager · Windows 10 &amp; 11</span>
     </div>
   </div>
 </footer>

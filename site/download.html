@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<title>Download — Explorer Manager</title>
+<meta name="description" content="Download Explorer Manager for Windows 10 and 11 — always the latest release, shipped as a zip.">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo.svg">
+<link rel="stylesheet" href="assets/styles.css">
+<meta property="og:title" content="Download — Explorer Manager">
+<meta property="og:description" content="Download Explorer Manager for Windows 10 and 11 — always the latest release, shipped as a zip.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
+<meta property="og:url" content="https://explorer-manager.vercel.app/download.html">
+<link rel="canonical" href="https://explorer-manager.vercel.app/download.html">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/mark.svg" alt="" width="30" height="27">
+      <span>Explorer&nbsp;Manager</span>
+    </a>
+    <nav class="nav">
+      <a href="download.html">Download</a>
+      <a href="index.html#features" class="hide-xs">Features</a>
+      <a href="setup.html" class="hide-sm">Setup</a>
+      <a href="https://github.com/aquaxs1/Explorer-Manager" class="hide-sm">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+  <section class="section section--soft" id="download">
+    <div class="wrap center">
+      <h2 class="reveal">Download and run</h2>
+      <p class="lead reveal" style="margin-top:12px;margin-bottom:26px">
+        One executable, no installer, no Python. Unzip it wherever you like, double-click it,
+        and start building rules.
+      </p>
+
+      <div class="dl reveal">
+        <img class="dl__mark" src="assets/mark.svg" alt="" width="64" height="58">
+        <div class="dl__meta">
+          <strong>ExplorerManager-windows-x64.zip</strong>
+          <span>Windows 10 / 11 · 64-bit · free for personal use</span>
+        </div>
+        <a class="btn btn--primary btn--lg" href="https://github.com/aquaxs1/Explorer-Manager/releases/latest/download/ExplorerManager-windows-x64.zip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          Download for Windows
+        </a>
+      </div>
+      <p class="install-hint reveal">
+        The archive holds a single <code>ExplorerManager.exe</code>. Windows may show a
+        SmartScreen notice for a new publisher — choose <b>More info</b> → <b>Run anyway</b>.
+        Each release also carries a <code>.sha256</code> file if you want to check the download.
+        You can <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">browse every release</a>.
+      </p>
+
+      <details class="adv reveal">
+        <summary>Rather use the command line?</summary>
+
+        <div class="adv__item">
+          <h3>Download it with PowerShell</h3>
+          <p>Fetches the same archive to your desktop and unpacks it.</p>
+          <div class="term">
+            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
+            <div class="term__body">
+<pre><code><span class="prompt">PS&gt; </span><span class="fn">irm</span> https://github.com/aquaxs1/Explorer-Manager/releases/latest/download/ExplorerManager-windows-x64.zip -OutFile <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.zip"</span>; <span class="fn">Expand-Archive</span> <span class="str">"$env:USERPROFILE\Desktop\ExplorerManager.zip"</span> -DestinationPath <span class="str">"$env:USERPROFILE\Desktop"</span> -Force</code></pre>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adv__item">
+          <h3>Run from source</h3>
+          <p>Needs <code>Python 3.10+</code> and <code>git</code> on your PATH.</p>
+          <div class="term">
+            <div class="term__head"><i></i><i></i><i></i><span>Windows PowerShell</span></div>
+            <div class="term__body">
+<pre><code><span class="prompt">PS&gt; </span><span class="fn">git clone</span> https://github.com/aquaxs1/Explorer-Manager.git; cd Explorer-Manager; <span class="fn">pip install</span> -r requirements.txt; <span class="fn">python</span> main.py</code></pre>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap center">
+      <p class="lead">Got it running? The <a href="setup.html">setup guide</a> takes you through
+        your first rule in four steps.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="brand" href="index.html">
+        <img src="assets/mark.svg" alt="" width="28" height="25">
+        <span>Explorer&nbsp;Manager</span>
+      </a>
+      <nav class="footer-links">
+        <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download</a>
+        <a href="setup.html">Setup</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="terms.html#rights">Rights &amp; License</a>
+        <a href="https://github.com/aquaxs1/Explorer-Manager">GitHub</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AquAxs. All rights reserved.</span>
+      <span>Explorer Manager · Windows 10 &amp; 11</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

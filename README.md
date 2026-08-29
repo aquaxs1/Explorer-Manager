@@ -11,7 +11,7 @@ you choose and moves every new file where it belongs — by filename and file
 type — and keeps doing it from the tray after you close the window.
 
 [![Website](https://img.shields.io/badge/website-explorer--manager.vercel.app-2C7BE5)](https://explorer-manager.vercel.app)
-[![Download](https://img.shields.io/badge/download-v1.2-27ae60)](https://github.com/aquaxs1/Explorer-Manager/releases/latest)
+[![Download](https://img.shields.io/badge/download-latest-27ae60)](https://github.com/aquaxs1/Explorer-Manager/releases/latest)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6)](https://explorer-manager.vercel.app)
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776AB)](https://python.org)
 [![License](https://img.shields.io/badge/license-personal%20use-lightgrey)](LICENSE.md)
@@ -64,9 +64,9 @@ things go in the first place.
 
 ## Install
 
-### Download the .exe (recommended)
+### Download it (recommended)
 
-**[Download ExplorerManager-v1.2.exe](https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe)**
+**[Download ExplorerManager-windows-x64.zip](https://github.com/aquaxs1/Explorer-Manager/releases/latest/download/ExplorerManager-windows-x64.zip)**
 — one file, no installer, no Python. Save it anywhere and double-click it.
 Windows may show a SmartScreen notice for a new publisher: choose
 **More info → Run anyway**. All releases are on the
@@ -74,10 +74,10 @@ Windows may show a SmartScreen notice for a new publisher: choose
 
 ### Download it with PowerShell
 
-Fetches the same .exe to your desktop and starts it right away:
+Fetches the same archive to your desktop and unpacks it:
 
 ```powershell
-irm https://github.com/aquaxs1/Explorer-Manager/releases/download/v1.2/ExplorerManager-v1.2.exe -OutFile "$env:USERPROFILE\Desktop\ExplorerManager.exe"; & "$env:USERPROFILE\Desktop\ExplorerManager.exe"
+irm https://github.com/aquaxs1/Explorer-Manager/releases/latest/download/ExplorerManager-windows-x64.zip -OutFile "$env:USERPROFILE\Desktop\ExplorerManager.zip"; Expand-Archive "$env:USERPROFILE\Desktop\ExplorerManager.zip" -DestinationPath "$env:USERPROFILE\Desktop" -Force
 ```
 
 ### From source
@@ -169,7 +169,7 @@ rule at once.
 
 - **Website** — <https://explorer-manager.vercel.app>
 - **Terms of Use** — <https://explorer-manager.vercel.app/terms.html>
-- **Rights & License** — <https://explorer-manager.vercel.app/rights.html>
+- **Rights & License** — <https://explorer-manager.vercel.app/terms.html#rights>
 - **Report an issue** — <https://github.com/aquaxs1/Explorer-Manager/issues>
 
 Free for personal, non-commercial use. See [LICENSE.md](LICENSE.md).
