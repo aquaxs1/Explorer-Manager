@@ -64,6 +64,25 @@ publishes the archive under that same name. Bump `version.py`, push a matching
 tag (`git tag v1.3 && git push origin v1.3`), and the site picks it up with no
 edit at all.
 
+The one thing that fixed name cannot do is invent an asset. GitHub answers
+`releases/latest/download/<name>` with a 404 when the newest release has no file
+under that name, and the button looks fine right up until someone clicks it. So
+the newest release has to have been built by this workflow: after changing the
+asset name, or when a release was published without it, re-run **Actions →
+Release → Run workflow**, which attaches the archive to the release matching
+`version.py`. The run's last step follows the public link and fails if it does
+not resolve, and `tests/test_site_download.py` keeps the name on the page and
+the name in the workflow from drifting apart.
+
 The executable ships inside a zip on purpose: browsers and antivirus engines
 flag a freshly downloaded, unsigned `.exe` far more readily than the same binary
-in an archive. The release also carries a `.sha256` for the archive.
+in an archive. The release also carries a `.sha256` for the archive, linked from
+the download page.
+
+`assets/main.js` then fills the card in from
+`api.github.com/repos/aquaxs1/Explorer-Manager/releases/latest`: the version and
+the size, neither of which a static page can know, and a fallback to whatever
+Windows asset the release does carry if the expected name is missing.
+It is decoration only — the served markup already links the archive, and any
+failure leaves the page as it is. The API host is in `connect-src` in both
+`vercel.json` files; drop the fetch and it can come back out.

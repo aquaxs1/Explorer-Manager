@@ -85,3 +85,42 @@ jobs:
             gh release create "$TAG" "$ASSET" "$ASSET.sha256" \
               --title "Explorer Manager $TAG" --generate-notes
           fi
+
+      # Every download button on the site is
+      # releases/latest/download/<asset>, resolved by GitHub at click time. A
+      # release that ends without that exact name under it leaves the site
+      # serving a 404, so the run does not finish until the link is real.
+      - name: Check the link the website uses
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          ASSET: ${{ steps.meta.outputs.asset }}
+        run: |
+          set -euo pipefail
+
+          position=$(gh release view "$TAG" --json assets \
+            --jq "[.assets[].name] | index(\"$ASSET\")")
+          if [ -z "$position" ] || [ "$position" = "null" ]; then
+            echo "::error::$ASSET is not attached to $TAG."
+            exit 1
+          fi
+
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" --jq .tag_name || echo "")
+          if [ "$latest" != "$TAG" ]; then
+            echo "::warning::The newest release is ${latest:-unknown}, not $TAG, so the site keeps serving that one."
+            exit 0
+          fi
+
+          url="https://github.com/$GITHUB_REPOSITORY/releases/latest/download/$ASSET"
+          for attempt in 1 2 3; do
+            code=$(curl -sIL -o /dev/null -w '%{http_code}' "$url")
+            if [ "$code" = "200" ]; then
+              echo "$url -> $code"
+              exit 0
+            fi
+            echo "$url -> $code (attempt $attempt)"
+            sleep 5
+          done
+          echo "::error::The website's download link does not resolve yet."
+          exit 1
