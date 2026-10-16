@@ -7,7 +7,7 @@ site/
 ├── index.html        # landing page (hero, features, what Windows can't do)
 ├── download.html     # the download and the command-line alternatives
 ├── setup.html        # set up in four steps
-├── terms.html        # Terms of Use, including Rights & License
+├── terms.html        # Terms of Use, including Privacy and Rights & License
 ├── 404.html
 ├── vercel.json       # used when Root Directory is set to `site`
 └── assets/
@@ -85,4 +85,6 @@ the size, neither of which a static page can know, and a fallback to whatever
 Windows asset the release does carry if the expected name is missing.
 It is decoration only — the served markup already links the archive, and any
 failure leaves the page as it is. The API host is in `connect-src` in both
-`vercel.json` files; drop the fetch and it can come back out.
+`vercel.json` files; drop the fetch and it can come back out. The lookup is
+also disclosed in the privacy section of `terms.html` (`#privacy`): change
+one, change the other.

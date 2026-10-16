@@ -8,8 +8,8 @@
 <title>Terms of Use — Explorer Manager</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Terms of Use — Explorer Manager">
-<meta property="og:description" content="Terms of use for the Explorer Manager application and website.">
-<meta name="description" content="Terms of use for the Explorer Manager application and website.">
+<meta property="og:description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
+<meta name="description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/logo.svg">
 <link rel="stylesheet" href="assets/styles.css">
@@ -40,7 +40,7 @@
 <main class="wrap legal">
   <a class="back-link" href="index.html">← Back to the site</a>
   <h1>Terms of Use</h1>
-  <p class="updated">Last updated: 29 August 2026</p>
+  <p class="updated">Last updated: 16 October 2026</p>
 
   <p>These terms apply to the Explorer Manager application ("the software") and this website. By downloading, installing or using the software you accept them.</p>
 
@@ -53,12 +53,29 @@
   <h2>3. No warranty</h2>
   <p>The software is provided "as is", without warranty of any kind, express or implied. To the maximum extent permitted by law, the author is not liable for any damages — including lost, moved or overwritten data, or loss of profits — arising from the use of, or inability to use, the software.</p>
 
-  <h2>4. Data</h2>
-  <p>Explorer Manager runs entirely on your machine. It contains no telemetry, no analytics and no account system, and it sends no file names, file contents or usage data anywhere. Your rules and watched folders are stored locally in:</p>
+  <h2 id="privacy">4. Privacy</h2>
+
+  <h3>Who is responsible</h3>
+  <p>Explorer Manager and this site are run by Sebi. For anything about your data, message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>.</p>
+
+  <h3>The program</h3>
+  <p>Explorer Manager runs entirely on your machine and never connects to the internet: no update check, no telemetry, no analytics, no account. It sends no file names, file contents or usage data anywhere, so none of it ever reaches Sebi. What it keeps stays on your computer:</p>
   <ul>
-    <li><code>%APPDATA%\ExplorerManager\settings.json</code></li>
+    <li><code>%APPDATA%\ExplorerManager\settings.json</code> — your rules, watched folders and settings.</li>
+    <li><code>%APPDATA%\ExplorerManager\explorer-manager.log</code> — what was sorted, including file names and folder paths. At most about 0.5&nbsp;MB, plus two older copies.</li>
+    <li>With <strong>Autostart</strong> on: a value named <code>ExplorerManager</code> under <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code>. Turning Autostart off removes it.</li>
   </ul>
-  <p>This website is static and sets no cookies. Downloads are hosted by GitHub, whose own terms and privacy policy apply when you fetch a file from them.</p>
+  <p>To remove everything, turn Autostart off, then delete the program folder and <code>%APPDATA%\ExplorerManager</code>.</p>
+
+  <h3>This website</h3>
+  <p>No cookies, no tracking, no analytics, and nothing is stored in your browser. The site is hosted by Vercel Inc. (USA), which processes connection data (IP address, time, requested file, browser) to deliver the pages and protect them against abuse. Legal basis: legitimate interest, Art. 6(1)(f) GDPR. Vercel is certified under the EU-US Data Privacy Framework.</p>
+
+  <h3>GitHub: release info and downloads</h3>
+  <p>When you open the download page, your browser asks GitHub's API (<code>api.github.com</code>) for the newest release, so the page can show the current version, the file size and a working link. For that request GitHub Inc. (USA) receives your IP address and the usual browser data, such as the browser type and the address of this site. Legal basis: legitimate interest in a download link that works, Art. 6(1)(f) GDPR.</p>
+  <p>The download, its checksum and the source code are hosted on GitHub too, so GitHub also sees your IP address when you fetch them. GitHub is certified under the EU-US Data Privacy Framework, and its own privacy statement applies to what it processes.</p>
+
+  <h3>Your rights</h3>
+  <p>You can ask for access to your data, correction, deletion, restriction or a copy, and you can object to processing based on legitimate interest (Art. 15–21 GDPR). Message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>. You can also complain to a data protection authority; in Austria that is the Datenschutzbehörde (<a href="https://www.dsb.gv.at">dsb.gv.at</a>).</p>
 
   <h2>5. Third-party services</h2>
   <p>Links to GitHub and other external sites are provided for convenience. The author has no control over their content and accepts no responsibility for it.</p>
@@ -106,7 +123,7 @@
   </div>
 
   <h2>14. Contact</h2>
-  <p>Questions, bug reports and license requests: <a href="https://github.com/aquaxs1/Explorer-Manager/issues">open an issue on GitHub</a>.</p>
+  <p>Questions, bug reports and license requests: <a href="https://github.com/aquaxs1/Explorer-Manager/issues">open an issue on GitHub</a>. Privacy questions and data requests: message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>.</p>
 
   <div class="note">
     <strong>In short:</strong> use it freely for yourself, don't sell it, keep the credits intact, and keep a backup — moving files is a one-way street.
@@ -124,6 +141,7 @@
         <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download</a>
         <a href="setup.html">How it works</a>
         <a href="terms.html">Terms of Use</a>
+        <a href="terms.html#privacy">Privacy</a>
         <a href="terms.html#rights">Rights &amp; License</a>
         <a href="https://github.com/aquaxs1/Explorer-Manager">GitHub</a>
       </nav>
