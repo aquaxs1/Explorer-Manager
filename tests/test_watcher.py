@@ -131,7 +131,7 @@ def test_a_growing_file_is_not_moved_yet(src, dest, monkeypatch):
     """The old version slept half a second and moved whatever was there."""
     f = make(src, "Invoice_big.pdf")
     monkeypatch.setattr(watcher, "STABLE_INTERVAL", 0.01)
-    monkeypatch.setattr(watcher.Path, "stat", lambda self: _growing(self))
+    monkeypatch.setattr(watcher.Path, "stat", lambda self, *args, **kwargs: _growing(self))
     assert not watcher.wait_until_complete(f, timeout=0.2, interval=0.01)
     assert f.exists()
 
