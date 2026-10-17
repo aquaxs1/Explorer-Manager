@@ -338,8 +338,11 @@ p { margin: 0; }
 .legal h1 { font-size: clamp(1.9rem, 4vw, 2.5rem); margin-bottom: 10px; }
 .legal .updated { color: var(--muted); font-size: .88rem; margin-bottom: 34px; }
 .legal h2 { font-size: 1.18rem; margin: 34px 0 10px; }
+.legal h3 { font-size: 1rem; margin: 22px 0 8px; }
 .legal p, .legal li { color: var(--ink); font-size: .98rem; }
 .legal ul { padding-left: 22px; display: grid; gap: 8px; margin: 10px 0 0; }
+.legal p + p, .legal ul + p { margin-top: 10px; }
+.legal code { overflow-wrap: anywhere; }
 .legal .note {
   margin-top: 34px; padding: 18px 20px; border-radius: var(--radius-m);
   background: var(--amber-100); border: 1px solid rgba(237, 181, 32, .4); font-size: .92rem;
