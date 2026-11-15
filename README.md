@@ -168,8 +168,8 @@ rule at once.
 ## Links
 
 - **Website** — <https://explorer-manager.vercel.app>
-- **Terms of Use** — <https://explorer-manager.vercel.app/terms.html>
-- **Rights & License** — <https://explorer-manager.vercel.app/terms.html#rights>
+- **Terms of Use** — <https://explorer-manager.vercel.app/terms>
+- **Rights & License** — <https://explorer-manager.vercel.app/terms#rights>
 - **Report an issue** — <https://github.com/aquaxs1/Explorer-Manager/issues>
 
 Free for personal, non-commercial use. See [LICENSE.md](LICENSE.md).

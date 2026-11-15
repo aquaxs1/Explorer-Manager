@@ -1,157 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#FFFFFF">
-<title>Terms of Use — Explorer Manager</title>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Terms of Use — Explorer Manager">
-<meta property="og:description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
-<meta name="description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
-<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/logo.svg">
-<link rel="stylesheet" href="assets/styles.css">
-<meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
-<meta property="og:url" content="https://explorer-manager.vercel.app/terms.html">
-<link rel="canonical" href="https://explorer-manager.vercel.app/terms.html">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Use — Explorer Manager</title>
+  <meta name="description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
+  <link rel="canonical" href="https://explorer-manager.vercel.app/terms">
+  <meta name="theme-color" content="#050806">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Explorer Manager">
+  <meta property="og:title" content="Terms of Use — Explorer Manager">
+  <meta property="og:description" content="Terms of use and privacy notice for the Explorer Manager application and website.">
+  <meta property="og:url" content="https://explorer-manager.vercel.app/terms">
+  <meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo-180.png">
+  <link rel="preload" href="assets/aqx/fonts/bodoni-moda-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/aqx/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/aqx/aqx.css">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/aqx/boot.js"></script>
+  <script type="module" src="assets/aqx/aqx.js"></script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="aqx-sky" aria-hidden="true"></canvas>
+  <div class="aqx-aura" aria-hidden="true"></div>
+  <div class="aqx-progress" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html">
-      <img src="assets/mark.svg" alt="" width="30" height="27">
-      <span>Explorer&nbsp;Manager</span>
-    </a>
-    <nav class="nav">
-      <a href="download.html">Download</a>
-      <a href="index.html#features" class="hide-xs">Features</a>
-      <a href="setup.html" class="hide-sm">Setup</a>
-      <a href="https://github.com/aquaxs1/Explorer-Manager" class="hide-sm">GitHub</a>
-    </nav>
-  </div>
-</header>
-
-<main class="wrap legal">
-  <a class="back-link" href="index.html">← Back to the site</a>
-  <h1>Terms of Use</h1>
-  <p class="updated">Last updated: 16 October 2026</p>
-
-  <p>These terms apply to the Explorer Manager application ("the software") and this website. By downloading, installing or using the software you accept them.</p>
-
-  <h2>1. Permitted use</h2>
-  <p>The software is free for <strong>personal, non-commercial use</strong>. You may install it on your own devices and modify it for yourself. Selling, renting, leasing or any other commercial distribution of the software or works derived from it is not permitted. The full terms are set out under <a href="#rights">Rights and licence</a> below.</p>
-
-  <h2>2. Your responsibility</h2>
-  <p>Explorer Manager moves files on your computer according to rules that <em>you</em> define. You are responsible for the rules you create and the folders you select. Test a new rule with unimportant files first and keep backups of anything you cannot afford to lose.</p>
-
-  <h2>3. No warranty</h2>
-  <p>The software is provided "as is", without warranty of any kind, express or implied. To the maximum extent permitted by law, the author is not liable for any damages — including lost, moved or overwritten data, or loss of profits — arising from the use of, or inability to use, the software.</p>
-
-  <h2 id="privacy">4. Privacy</h2>
-
-  <h3>Who is responsible</h3>
-  <p>Explorer Manager and this site are run by Sebi. For anything about your data, message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>.</p>
-
-  <h3>The program</h3>
-  <p>Explorer Manager runs entirely on your machine and never connects to the internet: no update check, no telemetry, no analytics, no account. It sends no file names, file contents or usage data anywhere, so none of it ever reaches Sebi. What it keeps stays on your computer:</p>
-  <ul>
-    <li><code>%APPDATA%\ExplorerManager\settings.json</code> — your rules, watched folders and settings.</li>
-    <li><code>%APPDATA%\ExplorerManager\explorer-manager.log</code> — what was sorted, including file names and folder paths. At most about 0.5&nbsp;MB, plus two older copies.</li>
-    <li>With <strong>Autostart</strong> on: a value named <code>ExplorerManager</code> under <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code>. Turning Autostart off removes it.</li>
-  </ul>
-  <p>To remove everything, turn Autostart off, then delete the program folder and <code>%APPDATA%\ExplorerManager</code>.</p>
-
-  <h3>This website</h3>
-  <p>No cookies, no tracking, no analytics, and nothing is stored in your browser. The site is hosted by Vercel Inc. (USA), which processes connection data (IP address, time, requested file, browser) to deliver the pages and protect them against abuse. Legal basis: legitimate interest, Art. 6(1)(f) GDPR. Vercel is certified under the EU-US Data Privacy Framework.</p>
-
-  <h3>GitHub: release info and downloads</h3>
-  <p>When you open the download page, your browser asks GitHub's API (<code>api.github.com</code>) for the newest release, so the page can show the current version, the file size and a working link. For that request GitHub Inc. (USA) receives your IP address and the usual browser data, such as the browser type and the address of this site. Legal basis: legitimate interest in a download link that works, Art. 6(1)(f) GDPR.</p>
-  <p>The download, its checksum and the source code are hosted on GitHub too, so GitHub also sees your IP address when you fetch them. GitHub is certified under the EU-US Data Privacy Framework, and its own privacy statement applies to what it processes.</p>
-
-  <h3>Your rights</h3>
-  <p>You can ask for access to your data, correction, deletion, restriction or a copy, and you can object to processing based on legitimate interest (Art. 15–21 GDPR). Message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>. You can also complain to a data protection authority; in Austria that is the Datenschutzbehörde (<a href="https://www.dsb.gv.at">dsb.gv.at</a>).</p>
-
-  <h2>5. Third-party services</h2>
-  <p>Links to GitHub and other external sites are provided for convenience. The author has no control over their content and accepts no responsibility for it.</p>
-
-  <h2>6. Changes</h2>
-  <p>These terms may be updated as the software evolves. The version published on this page is the one that applies. Continued use after a change means you accept the updated terms.</p>
-
-  <h2 id="rights">7. Rights and licence</h2>
-  <p class="updated">Proprietary licence — Explorer Manager · © 2026 Sebastian / AquaXS</p>
-
-  <p>Explorer Manager, its source code, its name and its logo are the property of Sebastian / AquaXS. The software is distributed under a proprietary license, summarised below and shipped in full as <code>LICENSE.md</code> with the source code.</p>
-
-  <h2>8. Permissions</h2>
-  <ul>
-    <li>Use and modify the software for <strong>personal use only</strong>.</li>
-    <li>Share the source code, provided this license and all author attributions remain intact.</li>
-  </ul>
-
-  <h2>9. Restrictions</h2>
-  <ul>
-    <li><strong>Commercial use:</strong> selling, renting or leasing the software is not allowed.</li>
-    <li><strong>Resale:</strong> any form of commercial distribution or resale of the software or its derivatives is strictly prohibited.</li>
-    <li><strong>Attribution:</strong> the "BY SEBASTIAN/AQUAXS" credits in the source code and in the GUI must not be removed or altered.</li>
-  </ul>
-
-  <h2>10. Warranty under the licence</h2>
-  <p>The software is provided "as is", without warranty of any kind. In no event shall the author be liable for any claim, damages or other liability arising from the software or its use.</p>
-
-  <h2>11. Brand</h2>
-  <p>The Explorer Manager name and logo may be used to refer to the project — in a review, a tutorial or a link. They may not be used for your own product, as your own branding, or in a way that suggests endorsement by the author.</p>
-
-  <h2>12. Third-party components</h2>
-  <p>Explorer Manager is built on open-source software, each covered by its own license:</p>
-  <ul>
-    <li><a href="https://github.com/gorakhargosh/watchdog">watchdog</a> — filesystem events, Apache License 2.0</li>
-    <li><a href="https://github.com/TomSchimansky/CustomTkinter">CustomTkinter</a> — user interface, see the project repository for its license</li>
-    <li><a href="https://www.python.org/">Python</a> — runtime, PSF License</li>
-  </ul>
-
-  <h2>13. Commercial licensing</h2>
-  <p>Want to use Explorer Manager inside a company or bundle it with something you sell? That needs written permission — <a href="https://github.com/aquaxs1/Explorer-Manager/issues">get in touch on GitHub</a>.</p>
-
-  <div class="note">
-    <strong>Full legal text:</strong> read <a href="https://github.com/aquaxs1/Explorer-Manager/blob/main/LICENSE.md">LICENSE.md</a> in the repository. Where this summary and the license file differ, the license file applies.
-  </div>
-
-  <h2>14. Contact</h2>
-  <p>Questions, bug reports and license requests: <a href="https://github.com/aquaxs1/Explorer-Manager/issues">open an issue on GitHub</a>. Privacy questions and data requests: message <a href="https://t.me/aquaxs">@aquaxs on Telegram</a>.</p>
-
-  <div class="note">
-    <strong>In short:</strong> use it freely for yourself, don't sell it, keep the credits intact, and keep a backup — moving files is a one-way street.
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <a class="brand" href="index.html">
-        <img src="assets/mark.svg" alt="" width="28" height="25">
-        <span>Explorer&nbsp;Manager</span>
-      </a>
-      <nav class="footer-links">
-        <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download</a>
-        <a href="setup.html">How it works</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="terms.html#privacy">Privacy</a>
-        <a href="terms.html#rights">Rights &amp; License</a>
-        <a href="https://github.com/aquaxs1/Explorer-Manager">GitHub</a>
-      </nav>
+  <header class="nav" data-stuck="false" data-open="false">
+    <div class="nav-inner">
+      <a class="brand" href="./" aria-label="Explorer Manager home"><img src="assets/logo-128.png" alt="" width="32" height="32"><span>Explorer Manager</span></a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="./#features">Features</a></li>
+        <li><a href="setup">Setup</a></li>
+        <li><a href="https://github.com/aquaxs1/Explorer-Manager" rel="noopener">GitHub</a></li>
+        <li><a class="btn btn-primary btn-sm" href="download">Download</a></li>
+      </ul>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Sebastian / AquaXS. All rights reserved.</span>
-      <span>Explorer Manager v1.1 · Windows 10 &amp; 11</span>
-    </div>
-  </div>
-</footer>
+  </header>
 
+  <main id="main">
+<header class="page-head">
+      <div class="stage" data-scene="assets/scene.js" data-mode="mini" aria-hidden="true"><canvas></canvas></div>
+      <div class="page-head-inner">
+        <span class="eyebrow">Legal</span>
+        <h1>Terms of Use</h1>
+        <p class="lead">Last updated: 16 October 2026</p>
+      </div>
+    </header>
+
+    <section class="sec">
+      <div class="wrap">
+        <a href="./">← Back to the site</a>
+        <div class="prose reveal">
+          <p>These terms apply to the Explorer Manager application ("the software") and this website. By downloading, installing or using the software you accept them.</p>
+          <h2>1. Permitted use</h2>
+          <p>The software is free for <strong>personal, non-commercial use</strong>. You may install it on your own devices and modify it for yourself. Selling, renting, leasing or any other commercial distribution of the software or works derived from it is not permitted. The full terms are set out under <a href="#rights">Rights and licence</a> below.</p>
+          <h2>2. Your responsibility</h2>
+          <p>Explorer Manager moves files on your computer according to rules that <em>you</em> define. You are responsible for the rules you create and the folders you select. Test a new rule with unimportant files first and keep backups of anything you cannot afford to lose.</p>
+          <h2>3. No warranty</h2>
+          <p>The software is provided "as is", without warranty of any kind, express or implied. To the maximum extent permitted by law, the author is not liable for any damages — including lost, moved or overwritten data, or loss of profits — arising from the use of, or inability to use, the software.</p>
+          <h2 id="privacy">4. Privacy</h2>
+          <h3>Who is responsible</h3>
+          <p>Explorer Manager and this site are run by Sebi. For anything about your data, message <a href="https://t.me/aquaxs" rel="noopener">@aquaxs on Telegram</a>.</p>
+          <h3>The program</h3>
+          <p>Explorer Manager runs entirely on your machine and never connects to the internet: no update check, no telemetry, no analytics, no account. It sends no file names, file contents or usage data anywhere, so none of it ever reaches Sebi. What it keeps stays on your computer:</p>
+          <ul>
+            <li><code>%APPDATA%\ExplorerManager\settings.json</code> — your rules, watched folders and settings.</li>
+            <li><code>%APPDATA%\ExplorerManager\explorer-manager.log</code> — what was sorted, including file names and folder paths. At most about 0.5 MB, plus two older copies.</li>
+            <li>With <strong>Autostart</strong> on: a value named <code>ExplorerManager</code> under <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code>. Turning Autostart off removes it.</li>
+          </ul>
+          <p>To remove everything, turn Autostart off, then delete the program folder and <code>%APPDATA%\ExplorerManager</code>.</p>
+          <h3>This website</h3>
+          <p>No cookies, no tracking, no analytics, and nothing is stored in your browser. The site is hosted by Vercel Inc. (USA), which processes connection data (IP address, time, requested file, browser) to deliver the pages and protect them against abuse. Legal basis: legitimate interest, Art. 6(1)(f) GDPR. Vercel is certified under the EU-US Data Privacy Framework.</p>
+          <h3>GitHub: release info and downloads</h3>
+          <p>When you open the download page, your browser asks GitHub's API (<code>api.github.com</code>) for the newest release, so the page can show the current version, the file size and a working link. For that request GitHub Inc. (USA) receives your IP address and the usual browser data, such as the browser type and the address of this site. Legal basis: legitimate interest in a download link that works, Art. 6(1)(f) GDPR.</p>
+          <p>The download, its checksum and the source code are hosted on GitHub too, so GitHub also sees your IP address when you fetch them. GitHub is certified under the EU-US Data Privacy Framework, and its own privacy statement applies to what it processes.</p>
+          <h3>Your rights</h3>
+          <p>You can ask for access to your data, correction, deletion, restriction or a copy, and you can object to processing based on legitimate interest (Art. 15–21 GDPR). Message <a href="https://t.me/aquaxs" rel="noopener">@aquaxs on Telegram</a>. You can also complain to a data protection authority; in Austria that is the Datenschutzbehörde (<a href="https://www.dsb.gv.at" rel="noopener">dsb.gv.at</a>).</p>
+          <h2>5. Third-party services</h2>
+          <p>Links to GitHub and other external sites are provided for convenience. The author has no control over their content and accepts no responsibility for it.</p>
+          <h2>6. Changes</h2>
+          <p>These terms may be updated as the software evolves. The version published on this page is the one that applies. Continued use after a change means you accept the updated terms.</p>
+          <h2 id="rights">7. Rights and licence</h2>
+          <p>Proprietary licence — Explorer Manager · © 2026 Sebastian / AquaXS</p>
+          <p>Explorer Manager, its source code, its name and its logo are the property of Sebastian / AquaXS. The software is distributed under a proprietary license, summarised below and shipped in full as <code>LICENSE.md</code> with the source code.</p>
+          <h2>8. Permissions</h2>
+          <ul>
+            <li>Use and modify the software for <strong>personal use only</strong>.</li>
+            <li>Share the source code, provided this license and all author attributions remain intact.</li>
+          </ul>
+          <h2>9. Restrictions</h2>
+          <ul>
+            <li><strong>Commercial use:</strong> selling, renting or leasing the software is not allowed.</li>
+            <li><strong>Resale:</strong> any form of commercial distribution or resale of the software or its derivatives is strictly prohibited.</li>
+            <li><strong>Attribution:</strong> the "BY SEBASTIAN/AQUAXS" credits in the source code and in the GUI must not be removed or altered.</li>
+          </ul>
+          <h2>10. Warranty under the licence</h2>
+          <p>The software is provided "as is", without warranty of any kind. In no event shall the author be liable for any claim, damages or other liability arising from the software or its use.</p>
+          <h2>11. Brand</h2>
+          <p>The Explorer Manager name and logo may be used to refer to the project — in a review, a tutorial or a link. They may not be used for your own product, as your own branding, or in a way that suggests endorsement by the author.</p>
+          <h2>12. Third-party components</h2>
+          <p>Explorer Manager is built on open-source software, each covered by its own license:</p>
+          <ul>
+            <li><a href="https://github.com/gorakhargosh/watchdog" rel="noopener">watchdog</a> — filesystem events, Apache License 2.0</li>
+            <li><a href="https://github.com/TomSchimansky/CustomTkinter" rel="noopener">CustomTkinter</a> — user interface, see the project repository for its license</li>
+            <li><a href="https://www.python.org/" rel="noopener">Python</a> — runtime, PSF License</li>
+          </ul>
+          <h2>13. Commercial licensing</h2>
+          <p>Want to use Explorer Manager inside a company or bundle it with something you sell? That needs written permission — <a href="https://github.com/aquaxs1/Explorer-Manager/issues" rel="noopener">get in touch on GitHub</a>.</p>
+          <div class="note"><strong>Full legal text:</strong> read <a href="https://github.com/aquaxs1/Explorer-Manager/blob/main/LICENSE.md" rel="noopener">LICENSE.md</a> in the repository. Where this summary and the license file differ, the license file applies.</div>
+          <h2>14. Contact</h2>
+          <p>Questions, bug reports and license requests: <a href="https://github.com/aquaxs1/Explorer-Manager/issues" rel="noopener">open an issue on GitHub</a>. Privacy questions and data requests: message <a href="https://t.me/aquaxs" rel="noopener">@aquaxs on Telegram</a>.</p>
+          <div class="note"><strong>In short:</strong> use it freely for yourself, don't sell it, keep the credits intact, and keep a backup — moving files is a one-way street.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-about">
+          <a class="brand" href="./"><img src="assets/logo-128.png" alt="" width="32" height="32" loading="lazy"><span>Explorer Manager</span></a>
+          <p>Watches your folders and files every new arrival where it belongs. Windows 10 &amp; 11.</p>
+        </div>
+        <nav class="footer-col" aria-label="Product">
+          <h2>Product</h2>
+          <ul>
+            <li><a href="./#features">Features</a></li>
+            <li><a href="download">Download</a></li>
+            <li><a href="setup">Setup</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Project">
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/aquaxs1/Explorer-Manager" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/aquaxs1/Explorer-Manager/releases" rel="noopener">Releases</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="terms">Terms of Use</a></li>
+            <li><a href="terms#privacy">Privacy</a></li>
+            <li><a href="terms#rights">Rights &amp; License</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="family">
+        <span class="family-label">More by AquAxs</span>
+        <ul>
+          <li><a href="https://aqua.is-a.dev/portfolio" data-home rel="noopener">All projects</a></li>
+          <li><a href="https://pfpair.app/" rel="noopener">Pfpair</a></li>
+          <li><a href="https://handled-market.vercel.app/" rel="noopener">Handled</a></li>
+          <li><a href="https://larpcorddc.vercel.app/" rel="noopener">Larpcord</a></li>
+          <li><a href="https://mybluejarvis.vercel.app/" rel="noopener">My Jarvis</a></li>
+          <li><a href="https://guardiantus-av.vercel.app/" rel="noopener">Guardiantus AV</a></li>
+          <li><a href="https://cipher-box-file-encrypter.vercel.app/" rel="noopener">CipherBox</a></li>
+          <li><a href="https://easy-cloner.vercel.app/" rel="noopener">Easy Server Cloner</a></li>
+          <li><a href="https://simple-skin.vercel.app/" rel="noopener">Simple Skin</a></li>
+          <li><a href="https://autobuild-gui.vercel.app/" rel="noopener">Autobuild GUI</a></li>
+          <li><a href="https://timetrackerextension.vercel.app/" rel="noopener">WebsiteTimeTrack</a></li>
+          <li><a href="https://wave-uninstaller.vercel.app/" rel="noopener">Wave Uninstaller</a></li>
+          <li><a href="https://discord-sakurabot.vercel.app/" rel="noopener">Sakura Bot</a></li>
+          <li><a href="https://revox-client.vercel.app/" rel="noopener">Revox Client</a></li>
+          <li><a href="https://chesstrainer.cc.cd/" rel="noopener">Chess Trainer</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal">
+        <p>© 2026 AquAxs. All rights reserved. Free for personal use.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
