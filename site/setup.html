@@ -1,102 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#FFFFFF">
-<title>Setup — Explorer Manager</title>
-<meta name="description" content="Set up Explorer Manager in four steps: pick a folder, add a rule, let the watcher run.">
-<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/logo.svg">
-<link rel="stylesheet" href="assets/styles.css">
-<meta property="og:title" content="Setup — Explorer Manager">
-<meta property="og:description" content="Set up Explorer Manager in four steps: pick a folder, add a rule, let the watcher run.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
-<meta property="og:url" content="https://explorer-manager.vercel.app/setup.html">
-<link rel="canonical" href="https://explorer-manager.vercel.app/setup.html">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setup — Explorer Manager</title>
+  <meta name="description" content="Set up Explorer Manager in four steps: add a source folder, create a rule, save, turn on autostart.">
+  <link rel="canonical" href="https://explorer-manager.vercel.app/setup">
+  <meta name="theme-color" content="#050806">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Explorer Manager">
+  <meta property="og:title" content="Setup — Explorer Manager">
+  <meta property="og:description" content="Set up Explorer Manager in four steps: add a source folder, create a rule, save, turn on autostart.">
+  <meta property="og:url" content="https://explorer-manager.vercel.app/setup">
+  <meta property="og:image" content="https://explorer-manager.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo-180.png">
+  <link rel="preload" href="assets/aqx/fonts/bodoni-moda-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/aqx/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/aqx/aqx.css">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/aqx/boot.js"></script>
+  <script type="module" src="assets/aqx/aqx.js"></script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="aqx-sky" aria-hidden="true"></canvas>
+  <div class="aqx-aura" aria-hidden="true"></div>
+  <div class="aqx-progress" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html">
-      <img src="assets/mark.svg" alt="" width="30" height="27">
-      <span>Explorer&nbsp;Manager</span>
-    </a>
-    <nav class="nav">
-      <a href="download.html">Download</a>
-      <a href="index.html#features" class="hide-xs">Features</a>
-      <a href="setup.html" class="hide-sm">Setup</a>
-      <a href="https://github.com/aquaxs1/Explorer-Manager" class="hide-sm">GitHub</a>
-    </nav>
-  </div>
-</header>
-<main>
+  <header class="nav" data-stuck="false" data-open="false">
+    <div class="nav-inner">
+      <a class="brand" href="./" aria-label="Explorer Manager home"><img src="assets/logo-128.png" alt="" width="32" height="32"><span>Explorer Manager</span></a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="./#features">Features</a></li>
+        <li><a href="setup" aria-current="page">Setup</a></li>
+        <li><a href="https://github.com/aquaxs1/Explorer-Manager" rel="noopener">GitHub</a></li>
+        <li><a class="btn btn-primary btn-sm" href="download">Download</a></li>
+      </ul>
+    </div>
+  </header>
 
-  <section class="section" id="setup">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:40px">
-        <h2 class="reveal">Set up in four steps</h2>
-        <p class="lead reveal" style="margin-top:12px">Takes about a minute. No config files to edit.</p>
+  <main id="main">
+<header class="page-head">
+      <div class="stage" data-scene="assets/scene.js" data-mode="mini" aria-hidden="true"><canvas></canvas></div>
+      <div class="page-head-inner">
+        <span class="eyebrow">About a minute</span>
+        <h1>Set up in <em>four steps</em></h1>
+        <p class="lead">Takes about a minute. No config files to edit.</p>
       </div>
+    </header>
 
-      <div class="steps">
-        <div class="step reveal">
-          <h3>Add a source</h3>
-          <p>Click <code>+ Add Source</code> and pick the folder to watch, e.g. your Downloads folder.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Create a rule</h3>
-          <p>Set a filename keyword, a file type, or both — then choose the destination folder.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Save &amp; restart</h3>
-          <p><code>Save &amp; Restart</code> stores your rules and starts sorting. <code>Sort existing files</code> cleans up the old pile.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Turn on autostart</h3>
-          <p>Switch <code>Autostart: OFF</code> to <code>ON</code> so it launches hidden with Windows and keeps sorting.</p>
+    <section class="sec" id="setup">
+      <div class="wrap">
+        <ol class="steps" data-cols>
+          <li class="reveal">
+            <h3>Add a source</h3>
+            <p>Click <code>+ Add Source</code> and pick the folder to watch, e.g. your Downloads folder.</p>
+          </li>
+          <li class="reveal">
+            <h3>Create a rule</h3>
+            <p>Set a filename keyword, a file type, or both — then choose the destination folder.</p>
+          </li>
+          <li class="reveal">
+            <h3>Save &amp; restart</h3>
+            <p><code>Save &amp; Restart</code> stores your rules and starts sorting. <code>Sort existing files</code> cleans up the old pile.</p>
+          </li>
+          <li class="reveal">
+            <h3>Turn on autostart</h3>
+            <p>Switch <code>Autostart: OFF</code> to <code>ON</code> so it launches hidden with Windows and keeps sorting.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="note reveal">
+          <p>Not downloaded it yet? <a class="textlink" href="download">Get it here</a>.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="section section--soft" style="padding-top:0">
-    <div class="wrap center">
-      <p class="lead">Not downloaded it yet? <a href="download.html">Get it here</a>.</p>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-about">
+          <a class="brand" href="./"><img src="assets/logo-128.png" alt="" width="32" height="32" loading="lazy"><span>Explorer Manager</span></a>
+          <p>Watches your folders and files every new arrival where it belongs. Windows 10 &amp; 11.</p>
+        </div>
+        <nav class="footer-col" aria-label="Product">
+          <h2>Product</h2>
+          <ul>
+            <li><a href="./#features">Features</a></li>
+            <li><a href="download">Download</a></li>
+            <li><a href="setup">Setup</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Project">
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/aquaxs1/Explorer-Manager" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/aquaxs1/Explorer-Manager/releases" rel="noopener">Releases</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="terms">Terms of Use</a></li>
+            <li><a href="terms#privacy">Privacy</a></li>
+            <li><a href="terms#rights">Rights &amp; License</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="family">
+        <span class="family-label">More by AquAxs</span>
+        <ul>
+          <li><a href="https://aqua.is-a.dev/portfolio" data-home rel="noopener">All projects</a></li>
+          <li><a href="https://pfpair.app/" rel="noopener">Pfpair</a></li>
+          <li><a href="https://handled-market.vercel.app/" rel="noopener">Handled</a></li>
+          <li><a href="https://larpcorddc.vercel.app/" rel="noopener">Larpcord</a></li>
+          <li><a href="https://mybluejarvis.vercel.app/" rel="noopener">My Jarvis</a></li>
+          <li><a href="https://guardiantus-av.vercel.app/" rel="noopener">Guardiantus AV</a></li>
+          <li><a href="https://cipher-box-file-encrypter.vercel.app/" rel="noopener">CipherBox</a></li>
+          <li><a href="https://easy-cloner.vercel.app/" rel="noopener">Easy Server Cloner</a></li>
+          <li><a href="https://simple-skin.vercel.app/" rel="noopener">Simple Skin</a></li>
+          <li><a href="https://autobuild-gui.vercel.app/" rel="noopener">Autobuild GUI</a></li>
+          <li><a href="https://timetrackerextension.vercel.app/" rel="noopener">WebsiteTimeTrack</a></li>
+          <li><a href="https://wave-uninstaller.vercel.app/" rel="noopener">Wave Uninstaller</a></li>
+          <li><a href="https://discord-sakurabot.vercel.app/" rel="noopener">Sakura Bot</a></li>
+          <li><a href="https://revox-client.vercel.app/" rel="noopener">Revox Client</a></li>
+          <li><a href="https://chesstrainer.cc.cd/" rel="noopener">Chess Trainer</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal">
+        <p>© 2026 AquAxs. All rights reserved. Free for personal use.</p>
+      </div>
     </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <a class="brand" href="index.html">
-        <img src="assets/mark.svg" alt="" width="28" height="25">
-        <span>Explorer&nbsp;Manager</span>
-      </a>
-      <nav class="footer-links">
-        <a href="https://github.com/aquaxs1/Explorer-Manager/releases/latest">Download</a>
-        <a href="setup.html">Setup</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="terms.html#privacy">Privacy</a>
-        <a href="terms.html#rights">Rights &amp; License</a>
-        <a href="https://github.com/aquaxs1/Explorer-Manager">GitHub</a>
-      </nav>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 AquAxs. All rights reserved.</span>
-      <span>Explorer Manager · Windows 10 &amp; 11</span>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/main.js"></script>
+  </footer>
 </body>
 </html>
