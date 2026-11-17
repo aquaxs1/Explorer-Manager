@@ -326,8 +326,8 @@ export function createStage(holder, options = {}) {
         frame.scale.setScalar(clamp(Math.min(viewWidth * 0.36, viewHeight * 0.74) / 4.4, 0.6, 1.08));
       } else {
         // Above the copy, in the upper third of a tall phone hero.
-        frame.position.set(0, viewHeight * 0.2, 0);
-        frame.scale.setScalar(clamp(Math.min(viewWidth * 0.86, viewHeight * 0.46) / 4.4, 0.42, 0.95));
+        frame.position.set(0, viewHeight * 0.245, 0);
+        frame.scale.setScalar(clamp(Math.min(viewWidth * 0.86, viewHeight * 0.4) / 4.4, 0.4, 0.95));
       }
     } else {
       frame.position.set(0, 0, 0);
@@ -443,7 +443,8 @@ export function createStage(holder, options = {}) {
     raf = requestAnimationFrame(tick);
     const ms = now - last;
     last = now;
-    const delta = Math.min(0.05, ms / 1000);
+    // The first frame's timestamp can lie before the moment play() was called.
+    const delta = Math.max(0, Math.min(0.05, ms / 1000));
 
     // A device that cannot keep up gets fewer pixels rather than a slideshow.
     frames += 1;
